@@ -5,7 +5,7 @@
 	let output = '';
 	let loading = false;
 
-	const genAI = new GoogleGenerativeAI('AIzaSyB-eG9Mzr3tMqVWuK4y2u3rs4aaXX3YqcE');
+	const genAI = new GoogleGenerativeAI('AIzaSyCWEm-gdR8Z9Mrwnb_UK7Vf_VLihFsVBFA');
 	async function getOutput() {
 		loading = true;
 		const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
