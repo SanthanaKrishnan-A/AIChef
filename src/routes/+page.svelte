@@ -7,37 +7,31 @@
 
 	const genAI = new GoogleGenerativeAI('AIzaSyCWEm-gdR8Z9Mrwnb_UK7Vf_VLihFsVBFA');
 	async function getOutput() {
-		loading = true;
-		output = "";
-		const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
-		const prompt = `Your an AI Chef who is going to help with cooking proper Indian Dishes. 
-		mostly south indian . lets put like this your going to recommend easy cooking dishes. 
-		Get the ingredients they have and number of people they want to cook and recommendt them the most simple and 
-		easy food they can make out of that with ingredients with count/grams that should be enough for the number of people they cook,
-		also the procedure to cook with duration. also mention the name of the dish with duration to cook.
-		your going to help the most bachelors who are going to cook in home. so recommend simple and easy and tasty food with the ingridents they have. also explain the procedures like your doing for a kid
-		return with step by step procedure !
-			Ingridents : ${items}
-			Number of People : ${count}
-		The Output should look like :
-		Name of the Dish - Duration to make for the count.
-		Ingridents :
-			list of the things - count/grams
-		Procedure :
-			things to do for duration or state`;
+        loading = true;
+        output = "";
+        const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+        const prompt = `You are an AI Chef specializing in simple South Indian dishes. Based on the ingredients provided and the number of people to serve, recommend an easy-to-make dish. 
+        Use the exact quantities of the ingredients provided by the user without altering them. Include:
 
-		try {
-			const result = await model.generateContent({
-				contents: [{ role: "user", parts: [{ text: prompt }] }]
-			});
-			output = result.response.text();
-		} catch (error) {
-			console.error('Error:', error);
-			output = 'Oops! Something went wrong. Try again.';
-		} finally {
-			loading = false;
-		}
-	}
+        1. Dish Name - Cooking Duration
+        2. Ingredients with the same quantities as provided
+        3. Step-by-step cooking procedure (simple and beginner-friendly)
+
+        Ingredients: ${items}
+        Number of People: ${count}`;
+
+        try {
+            const result = await model.generateContent({
+                contents: [{ role: "user", parts: [{ text: prompt }] }]
+            });
+            output = result.response.text();
+        } catch (error) {
+            console.error('Error:', error);
+            output = 'Oops! Something went wrong. Try again.';
+        } finally {
+            loading = false;
+        }
+    }
 </script>
 
 <main>
