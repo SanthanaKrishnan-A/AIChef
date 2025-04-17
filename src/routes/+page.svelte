@@ -11,7 +11,8 @@
         output = "";
         const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
         const prompt = `You are an AI Chef specializing in simple South Indian dishes. Based on the ingredients provided and the number of people to serve, recommend an easy-to-make dish. 
-        Use the exact quantities of the ingredients provided by the user without altering them. Include:
+        Use the exact quantities of the ingredients provided by the user without altering them. Avoid Seasoning Optional.
+		 Include:
 
         1. Dish Name - Cooking Duration
         2. Ingredients with the same quantities as provided
